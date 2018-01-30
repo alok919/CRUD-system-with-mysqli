@@ -27,6 +27,8 @@
 
 			}
 
+			//Select or read data
+
 			public function select($query){
 
 				$result=$this->link->query($query) or die($this->link->error.__LINE__);
@@ -39,6 +41,7 @@
 				}
 			}
 
+				//Select or insert data
 
 			public function insert($query){
 
@@ -51,6 +54,24 @@
 					die("Error :(".$this->link->errno.")".$this->link->error);
 				}
 			}
+
+
+				//Select or update data
+
+			public function update($query){
+
+				$update_row=$this->link->query($query) or die($this->link->error.__LINE__);
+
+				if ($update_row) {
+					header("Location:index.php?msg=".urlencode('Data updated successfully'));
+					exit();
+				}else{
+					die("Error :(".$this->link->errno.")".$this->link->error);
+				}
+			}
+
+
+
 		}
 	
 
